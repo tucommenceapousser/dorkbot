@@ -1,0 +1,12 @@
+<h1>Job {{ job.id }}</h1>
+<p>
+Task: {{ job.task }}<br />
+Organization: {{ job.organization.name }}<br />
+Domain: {{ job.domain.name }}<br />
+</p>
+<h3>Containers:</h3>
+<ul>
+    {% for container in job.container_set.all %}
+        <li>{{ container.id }} - {{ container.organization.name }} - {{ container.domain.name }} - {{ container.host }}</li>
+    {% endfor %}
+</ul>

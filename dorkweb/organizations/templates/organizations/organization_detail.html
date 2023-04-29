@@ -1,0 +1,6 @@
+<h1>{{ organization.name }}</h1>
+<ul>
+{% for domain in organization.domain_set.all %}
+    <li>{{ domain.name }}</li>
+{% endfor %}
+</ul>

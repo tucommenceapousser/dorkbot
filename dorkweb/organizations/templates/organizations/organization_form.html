@@ -1,0 +1,7 @@
+<h1>Create Organization</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ domain_formset.as_p }}
+    <input type="submit" value="Save" />
+</form>

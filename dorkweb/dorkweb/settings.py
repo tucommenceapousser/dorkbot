@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'background_task',
+    'blacklist.apps.BlacklistConfig',
+    'jobs.apps.JobsConfig',
+    'organizations.apps.OrganizationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +59,7 @@ ROOT_URLCONF = 'dorkweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,3 +126,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DOCKER_HOSTS = {
+    'localhost': {
+        'url': 'unix://var/run/docker.sock',
+        'uid': '501',
+        'gid': '20',
+        'image': 'python:3-slim',
+        'max_containers': 10,
+    }
+}
+DOCKER_DEFAULT_HOST = 'localhost'
+
+DORKBOT_DATABASE_PREFIX = 'dorkbotdev_'
+DORKBOT_DIRECTORY = '/Users/jgor/Desktop/test/'
+BLACKLIST_FILE = DORKBOT_DIRECTORY + 'config/blacklist.txt'
+

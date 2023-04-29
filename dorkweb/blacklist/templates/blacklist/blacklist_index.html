@@ -1,0 +1,19 @@
+<h1>
+<a href="{% url 'organizations:list' %}">Organizations</a> |
+<a href="{% url 'jobs:list' %}">Jobs</a> |
+Blacklist
+</h1>
+<a href="{% url 'logout' %}">Logout</a>
+<hr />
+<h4>Add Blacklist Pattern</h4>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add" />
+<hr />
+<table>
+    {% for line in blacklist %}
+        <tr><td><input type="submit" name="delete-{{ forloop.counter0 }}" value="Delete"></td><td>{{ line }}</td></tr>
+    {% endfor %}
+</table>
+</form>

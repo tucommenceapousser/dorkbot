@@ -1,0 +1,30 @@
+<h1>Create Job</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+<script>
+    function load_domains() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("id_domain").innerHTML = xhttp.responseText;
+            }
+        };
+        var organization = document.getElementById("id_organization").value;
+        xhttp.open("GET", "{% url 'jobs:ajax_load_domains' %}?organization="+organization, true);
+        xhttp.send();
+    }
+
+    function hide_domains() {
+        var task = document.getElementById("id_task").value;
+        var domain_selector = document.getElementById("id_domain").parentElement
+        if (task == "scan") {
+            domain_selector.style.display = "none"
+        }
+        else {
+            domain_selector.style.display = "block"
+        }
+    }
+</script>

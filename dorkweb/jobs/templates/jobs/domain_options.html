@@ -1,0 +1,4 @@
+<option value="">[all]</option>
+{% for domain in domains %}
+<option value="{{ domain.pk }}">{{ domain.name }}</option>
+{% endfor %}
