@@ -1,0 +1,5 @@
+django>=4
+django4-background-tasks
+psycopg2.binary
+docker
+../../dorkbot
