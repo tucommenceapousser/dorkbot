@@ -43,18 +43,18 @@ def run_container(container_id):
     else:
         dorkbot_database = os.path.join(os.sep, 'opt', 'dorkbot', settings.DORKBOT_DATABASE_PREFIX + container.organization.name + '.sqlite3')
 
-    if 'blacklist' in settings.DATABASES:
-        db = settings.DATABASES['blacklist']
-        blacklist = 'postgresql://' + ':'.join([db['USER'], db['PASSWORD']]) + '@' + ':'.join([db['HOST'], db['PORT']]) + '/' + settings.DORKBOT_DATABASE_PREFIX + 'blacklist'
+    if 'blocklist' in settings.DATABASES:
+        db = settings.DATABASES['blocklist']
+        blocklist = 'postgresql://' + ':'.join([db['USER'], db['PASSWORD']]) + '@' + ':'.join([db['HOST'], db['PORT']]) + '/' + settings.DORKBOT_DATABASE_PREFIX + 'blocklist'
     else:
-        blacklist = os.path.join(os.sep, 'opt', 'dorkbot', 'config', 'blacklist.txt')
+        blocklist = os.path.join(os.sep, 'opt', 'dorkbot', 'config', 'blocklist.txt')
 
     cmd = ['/bin/bash']
     cmd += ['-c', 'pip3', 'install', '--upgrade', 'dorkbot', '&&']
     cmd += ['dorkbot']
     cmd += ['-r', '/opt/dorkbot']
     cmd += ['-d', dorkbot_database]
-    cmd += ['-b', blacklist]
+    cmd += ['-b', blocklist]
     if settings.DEBUG:
         cmd += ['-v']
     if container.job.task == 'index':

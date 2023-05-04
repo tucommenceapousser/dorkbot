@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'background_task',
-    'blacklist.apps.BlacklistConfig',
+    'blocklist.apps.BlocklistConfig',
     'jobs.apps.JobsConfig',
     'organizations.apps.OrganizationsConfig',
     'django.contrib.admin',
@@ -140,5 +140,5 @@ DOCKER_DEFAULT_HOST = 'localhost'
 
 DORKBOT_DATABASE_PREFIX = 'dorkbotdev_'
 DORKBOT_DIRECTORY = '/Users/jgor/Desktop/test/'
-BLACKLIST_FILE = DORKBOT_DIRECTORY + 'config/blacklist.txt'
+BLOCKLIST_FILE = DORKBOT_DIRECTORY + 'config/blocklist.txt'
 

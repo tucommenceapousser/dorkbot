@@ -24,5 +24,5 @@ urlpatterns = [
     path('organizations/', include('organizations.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('blacklist/', include('blacklist.urls')),
+    path('blocklist/', include('blocklist.urls')),
 ]
